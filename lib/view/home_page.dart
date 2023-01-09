@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:login_page_controller/core/constants/constants.dart';
-import 'package:login_page_controller/view/login_page.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({
@@ -16,8 +15,6 @@ class HomePage extends StatelessWidget {
         child: Column(
           children: [
             _cliprrectImage(),
-            // Constants.sizedBoxHeight20,
-            // TextTitle(title: savedTokens ?? ""),
             Constants.sizedBoxHeight20,
             _title(),
           ],

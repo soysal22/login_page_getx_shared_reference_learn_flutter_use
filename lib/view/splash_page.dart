@@ -46,7 +46,7 @@ class _SplashPageState extends State<SplashPage> {
       body: const Center(
           child: Text(
         "Hoşgelginiz",
-        style: TextStyle(fontSize: 30),
+        style: TextStyle(fontSize: 30, color: Constants.colorWhite),
       )),
     );
   }
