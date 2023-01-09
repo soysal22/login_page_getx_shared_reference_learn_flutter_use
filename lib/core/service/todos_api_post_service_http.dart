@@ -10,15 +10,10 @@ import 'package:login_page_controller/core/models/login_model.dart';
 import 'package:login_page_controller/view/login_page.dart';
 
 class TodosApiPostService extends GetxController {
-  String? tokens;
   Future<LoginModel?> LoginCall(
       {required BuildContext context, String? email, String? password}) async {
     log("email :  ${email!}");
     log("password :  ${password!}");
-    /*  
-        "email": "eve.holt@reqres.in",
-        "password": "cityslicka"
-      */
 
     var uri = Uri.parse(Constants.LOGIN_URL);
 
@@ -29,17 +24,23 @@ class TodosApiPostService extends GetxController {
       var decode = jsonDecode(response.body);
 
       var map = LoginModel.fromJson(decode);
-      tokens = map.token;
+
+      /*  
+        "email": "eve.holt@reqres.in",
+        "password": "cityslicka"
+      */
 
       if (checkboxController.CheckBool.value == true &&
           response.statusCode == 200) {
-        prefs.setString("savedTokens", map.token ?? "");
-
-        log("savedTokens : $savedTokens ");
+        log("savedTokens : ${map.token} ");
       }
-
-      log("Giriş Başarılı  : ${map.token}");
-
+      prefs.setString('token', map.token!);
+      //log("Giriş Başarılı  : $savedTokens");
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+          content: Text(
+        "Kullanıcı Girişi Başarılı ",
+      )));
+      log("kaydedilen token : $savedTokens ");
       return map;
     } else {
       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(

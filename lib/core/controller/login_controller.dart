@@ -22,7 +22,7 @@ class LoginController extends GetxController {
       password: passwordcontroller.text,
     ).then((value) {
       if (value?.token != null) {
-        Future.delayed(const Duration(milliseconds: 4), () {
+        Future.delayed(const Duration(microseconds: 1), () {
           Get.to(() => const HomePage());
         });
       }

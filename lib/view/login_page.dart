@@ -111,7 +111,7 @@ class _LoginPageState extends State<LoginPage> {
         "email": "eve.holt@reqres.in",
         "password": "cityslicka"
       */
-      onPressed: () {
+      onPressed: () async {
         if (formKey.currentState?.validate() == true) {
           textFieldController.fecthLogin(context);
         }

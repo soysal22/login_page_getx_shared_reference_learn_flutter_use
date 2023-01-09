@@ -1,5 +1,4 @@
 import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:login_page_controller/core/constants/constants.dart';
@@ -22,21 +21,19 @@ class _SplashPageState extends State<SplashPage> {
         "password": "cityslicka"
       */
 
-    if (savedTokens == null) {
-      Future.delayed(const Duration(milliseconds: 4), () {
-        Get.to(
-          () => const LoginPage(),
-        );
-        log(savedTokens ?? "boşşşşş");
-      });
-    } else {
-      Future.delayed(const Duration(milliseconds: 4), () {
-        Get.to(
-          () => const HomePage(),
-        );
-        log(savedTokens ?? "Doluuu    : $savedTokens ");
-      });
-    }
+    savedTokens == null
+        ? Future.delayed(const Duration(microseconds: 1), () {
+            Get.to(
+              () => const LoginPage(),
+            );
+            log(savedTokens ?? "boşşşşş");
+          })
+        : Future.delayed(const Duration(microseconds: 1), () {
+            Get.to(
+              () => const HomePage(),
+            );
+            log(savedTokens ?? "Doluuu    : $savedTokens ");
+          });
   }
 
   @override
