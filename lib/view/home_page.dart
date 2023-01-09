@@ -16,8 +16,8 @@ class HomePage extends StatelessWidget {
         child: Column(
           children: [
             _cliprrectImage(),
-            Constants.sizedBoxHeight20,
-            TextTitle(title: savedTokens ?? ""),
+            // Constants.sizedBoxHeight20,
+            // TextTitle(title: savedTokens ?? ""),
             Constants.sizedBoxHeight20,
             _title(),
           ],
