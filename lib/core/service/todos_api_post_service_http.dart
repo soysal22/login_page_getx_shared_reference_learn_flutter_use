@@ -21,6 +21,8 @@ class TodosApiPostService extends GetxController {
     var response =
         await http.post(uri, body: ({'email': email, 'password': password}));
 
+    log("  response.statusCode  : ${response.statusCode} ");
+
     if (response.statusCode == 200) {
       var decode = jsonDecode(response.body);
 
@@ -37,11 +39,6 @@ class TodosApiPostService extends GetxController {
         prefs.setString('savedTokens', map.token ?? "");
 
         return map;
-      } else {
-        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-            content: Text(
-          "Kullanıcı Bilgileri Hatalı Lütfen Tekrar Deneyiniz",
-        )));
       }
     }
   }

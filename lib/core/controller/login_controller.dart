@@ -25,6 +25,11 @@ class LoginController extends GetxController {
         Future.delayed(const Duration(microseconds: 1), () {
           Get.to(() => const HomePage());
         });
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+            content: Text(
+          "Kullanıcı bilgileri Hatalı Lütfen Tekrar Deneyiniz  ...   ",
+        )));
       }
     });
   }

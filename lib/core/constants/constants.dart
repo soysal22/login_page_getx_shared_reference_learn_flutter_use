@@ -13,7 +13,6 @@ class Constants {
 // Colors
   static const Color colorTransparent = Colors.transparent;
   static Color colorGrey = Colors.grey.shade700;
-
   static const Color colorWhite = Colors.white;
   static const Color colorBlue = Colors.blue;
   static const Color colorGreen = Color.fromARGB(172, 14, 201, 185);

@@ -25,7 +25,7 @@ class _SplashPageState extends State<SplashPage> {
   @override
   void initState() {
     getValue().whenComplete(() async {
-      Future.delayed(const Duration(microseconds: 1), () {
+      Future.delayed(const Duration(microseconds: 5), () {
         finalToken == null
             ? Get.to(() => const LoginPage())
             : Get.to(() => const HomePage());
@@ -39,7 +39,6 @@ class _SplashPageState extends State<SplashPage> {
   }
 
   Future getValue() async {
-    log("final Tokenın ilk hali  : $finalToken");
     prefs = await _prefs;
 
     var gelenToken = prefs.getString('savedTokens');
@@ -47,7 +46,7 @@ class _SplashPageState extends State<SplashPage> {
       finalToken = gelenToken;
     });
 
-    log("final Token  son hali  : $finalToken");
+    log("final Token: $finalToken");
   }
 
   @override

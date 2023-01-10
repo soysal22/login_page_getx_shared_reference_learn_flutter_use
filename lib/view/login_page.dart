@@ -122,6 +122,28 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
+  Card _emailCardTextfield() {
+    return Card(
+      child: Padding(
+        padding: const EdgeInsets.only(left: 20),
+        child: Center(
+          child: TextFormField(
+            validator: ValidationMixin().validateEmailName,
+            keyboardType: TextInputType.emailAddress,
+            controller: textFieldController.emailcontroller,
+            decoration: const InputDecoration(
+                hintText: "Please Write to an Email ",
+                suffixIcon: Icon(
+                  Icons.email_sharp,
+                  size: 30,
+                ),
+                labelText: "Email"),
+          ),
+        ),
+      ),
+    );
+  }
+
   Card _passwordCardTextfield() {
     return Card(
       child: Padding(
@@ -133,7 +155,7 @@ class _LoginPageState extends State<LoginPage> {
             obscureText: obsourcetext.checkObsourceText.value,
             controller: textFieldController.passwordcontroller,
             decoration: InputDecoration(
-                hintText: "Please Write to a Password ",
+                hintText: "Please Write to a Password Ex: adasd@dada ",
                 suffixIcon: GestureDetector(
                   onTap: () {
                     obsourcetext.checkObsourceText.value =
@@ -152,28 +174,6 @@ class _LoginPageState extends State<LoginPage> {
                         ),
                 ),
                 labelText: "Passsword "),
-          ),
-        ),
-      ),
-    );
-  }
-
-  Card _emailCardTextfield() {
-    return Card(
-      child: Padding(
-        padding: const EdgeInsets.only(left: 20),
-        child: Center(
-          child: TextFormField(
-            validator: ValidationMixin().validateEmailName,
-            keyboardType: TextInputType.emailAddress,
-            controller: textFieldController.emailcontroller,
-            decoration: const InputDecoration(
-                hintText: "Please Write to an Email ",
-                suffixIcon: Icon(
-                  Icons.email_sharp,
-                  size: 30,
-                ),
-                labelText: "Email"),
           ),
         ),
       ),
