@@ -63,10 +63,11 @@ class _HomePageState extends State<HomePage> {
       actions: [
         GestureDetector(
           onTap: () {
-            Future.delayed(const Duration(microseconds: 1), () {
-              Get.to(() => const SplashPage());
-              log("Kullanıcı Çıkış Yaptı ");
-              prefs.setString('savedTokens', '');
+            Get.to(() => const LoginPage());
+            log("Kullanıcı Çıkış Yaptı ");
+            setState(() {
+              //prefs.setString('savedTokens', '');
+              prefs.clear(); // içndekini komple siler
             });
           },
           child: const Icon(
