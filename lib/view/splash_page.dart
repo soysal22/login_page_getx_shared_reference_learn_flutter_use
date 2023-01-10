@@ -19,14 +19,14 @@ class SplashPage extends StatefulWidget {
 final Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
 late SharedPreferences prefs;
 
-String? finalToken;
+String? finalToken = "";
 
 class _SplashPageState extends State<SplashPage> {
   @override
   void initState() {
     getValue().whenComplete(() async {
-      Future.delayed(const Duration(microseconds: 5), () {
-        finalToken == null
+      Future.delayed(const Duration(microseconds: 8), () {
+        finalToken == ""
             ? Get.to(() => const LoginPage())
             : Get.to(() => const HomePage());
       });

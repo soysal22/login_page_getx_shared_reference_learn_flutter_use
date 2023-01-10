@@ -37,9 +37,9 @@ class TodosApiPostService extends GetxController {
         log("gelen token  : ${map.token} ");
 
         prefs.setString('savedTokens', map.token ?? "");
-
-        return map;
+        log(prefs.getString('savedTokens').toString());
       }
+      return map;
     }
   }
 }

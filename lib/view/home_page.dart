@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:login_page_controller/core/constants/constants.dart';
+import 'package:login_page_controller/view/login_page.dart';
+import 'package:login_page_controller/view/splash_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({
@@ -55,6 +58,18 @@ class _HomePageState extends State<HomePage> {
       backgroundColor: Constants.colorGrey,
       centerTitle: true,
       title: const TextTitle(title: "Welcome to Home Page"),
+      actions: [
+        GestureDetector(
+          onTap: () {
+            prefs.setString('savedTokens', '');
+            Get.to(const LoginPage());
+          },
+          child: const Icon(
+            Icons.logout,
+            color: Constants.colorWhite,
+          ),
+        )
+      ],
     );
   }
 }
