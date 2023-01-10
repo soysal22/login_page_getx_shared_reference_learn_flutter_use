@@ -132,7 +132,7 @@ class _LoginPageState extends State<LoginPage> {
             keyboardType: TextInputType.emailAddress,
             controller: textFieldController.emailcontroller,
             decoration: const InputDecoration(
-                hintText: "Please Write to an Email ",
+                hintText: "Please Write to an Email Ex: adasd@dada ",
                 suffixIcon: Icon(
                   Icons.email_sharp,
                   size: 30,
@@ -155,7 +155,7 @@ class _LoginPageState extends State<LoginPage> {
             obscureText: obsourcetext.checkObsourceText.value,
             controller: textFieldController.passwordcontroller,
             decoration: InputDecoration(
-                hintText: "Please Write to a Password Ex: adasd@dada ",
+                hintText: "Please Write to a Password ",
                 suffixIcon: GestureDetector(
                   onTap: () {
                     obsourcetext.checkObsourceText.value =

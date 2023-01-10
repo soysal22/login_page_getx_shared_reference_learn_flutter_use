@@ -19,16 +19,19 @@ class SplashPage extends StatefulWidget {
 final Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
 late SharedPreferences prefs;
 
-String? finalToken = "";
+String? finalToken;
+String? gelenToken;
 
 class _SplashPageState extends State<SplashPage> {
   @override
   void initState() {
     getValue().whenComplete(() async {
       Future.delayed(const Duration(microseconds: 8), () {
-        finalToken == ""
-            ? Get.to(() => const LoginPage())
-            : Get.to(() => const HomePage());
+        if (finalToken!.isEmpty) {
+          Get.to(() => const LoginPage());
+        } else {
+          Get.to(() => const HomePage());
+        }
       });
     });
     super.initState();
@@ -40,11 +43,10 @@ class _SplashPageState extends State<SplashPage> {
 
   Future getValue() async {
     prefs = await _prefs;
-
-    // finalToken = "";
-    var gelenToken = prefs.getString('savedTokens');
+    gelenToken = prefs.getString('savedTokens');
     setState(() {
       finalToken = gelenToken;
+      log("gelen Token: $gelenToken");
     });
 
     log("final Token: $finalToken");

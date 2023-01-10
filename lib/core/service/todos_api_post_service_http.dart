@@ -11,6 +11,7 @@ import 'package:login_page_controller/view/login_page.dart';
 import 'package:login_page_controller/view/splash_page.dart';
 
 class TodosApiPostService extends GetxController {
+  String? empty;
   Future<LoginModel?> LoginCall(
       {required BuildContext context, String? email, String? password}) async {
     log("email :  ${email!}");
@@ -34,14 +35,16 @@ class TodosApiPostService extends GetxController {
       */
 
       if (checkboxController.CheckBool.value == true) {
-        log("Kullanıcı Giriş Yaptı ");
+        log("Kullanıcı Kaydı Yapıldı ");
         log("gelen token  : ${map.token} ");
 
         prefs.setString('savedTokens', map.token ?? '');
         log(" shared a kaydedilen tokens : ${prefs.getString('savedTokens')}");
+      } else {
+        log("Kullanıcı Kaydedilmedi ");
+        prefs.setString('savedTokens', empty!);
+        log(" shared a kaydedilen tokens : ${prefs.getString('savedTokens')}");
       }
-      log("Kullanıcı Kaydedilmedi ");
-      prefs.setString('savedTokens', '');
 
       return map;
     }
