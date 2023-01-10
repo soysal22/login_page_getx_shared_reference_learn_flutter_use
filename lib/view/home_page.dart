@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:login_page_controller/core/constants/constants.dart';
@@ -61,10 +63,12 @@ class _HomePageState extends State<HomePage> {
       actions: [
         GestureDetector(
           onTap: () {
+            log("Kullanıcı Çıkış Yaptı ");
             prefs.setString('savedTokens', '');
-            Get.to(const LoginPage());
+            Get.to(() => const LoginPage());
           },
           child: const Icon(
+            size: 25,
             Icons.logout,
             color: Constants.colorWhite,
           ),

@@ -29,16 +29,20 @@ class TodosApiPostService extends GetxController {
       var map = LoginModel.fromJson(decode);
 
       /*  
-        "email": "eve.holt@reqres.in",
+        "email": "   eve.holt@reqres.in     "",
         "password": "cityslicka"
       */
 
       if (checkboxController.CheckBool.value == true) {
+        log("Kullanıcı Giriş Yaptı ");
         log("gelen token  : ${map.token} ");
 
-        prefs.setString('savedTokens', map.token ?? "");
-        log(prefs.getString('savedTokens').toString());
+        prefs.setString('savedTokens', map.token ?? '');
+        log(" shared a kaydedilen tokens : ${prefs.getString('savedTokens')}");
       }
+      log("Kullanıcı Kaydedilmedi ");
+      prefs.setString('savedTokens', '');
+
       return map;
     }
   }

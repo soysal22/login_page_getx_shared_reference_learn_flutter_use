@@ -41,6 +41,7 @@ class _SplashPageState extends State<SplashPage> {
   Future getValue() async {
     prefs = await _prefs;
 
+    // finalToken = "";
     var gelenToken = prefs.getString('savedTokens');
     setState(() {
       finalToken = gelenToken;
