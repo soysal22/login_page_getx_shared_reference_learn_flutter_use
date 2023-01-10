@@ -8,6 +8,7 @@ import 'package:http/http.dart' as http;
 import 'package:login_page_controller/core/constants/constants.dart';
 import 'package:login_page_controller/core/models/login_model.dart';
 import 'package:login_page_controller/view/login_page.dart';
+import 'package:login_page_controller/view/splash_page.dart';
 
 class TodosApiPostService extends GetxController {
   Future<LoginModel?> LoginCall(
@@ -30,23 +31,18 @@ class TodosApiPostService extends GetxController {
         "password": "cityslicka"
       */
 
-      if (checkboxController.CheckBool.value == true &&
-          response.statusCode == 200) {
-        log("savedTokens : ${map.token} ");
+      if (checkboxController.CheckBool.value == true) {
+        log("gelen token  : ${map.token} ");
+
+        prefs.setString('savedTokens', map.token ?? "");
+
+        return map;
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+            content: Text(
+          "Kullanıcı Bilgileri Hatalı Lütfen Tekrar Deneyiniz",
+        )));
       }
-      prefs.setString('token', map.token!);
-      //log("Giriş Başarılı  : $savedTokens");
-      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-          content: Text(
-        "Kullanıcı Girişi Başarılı ",
-      )));
-      log("kaydedilen token : $savedTokens ");
-      return map;
-    } else {
-      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-          content: Text(
-        "Kullanıcı Bilgileri Hatalı Lütfen Tekrar Deneyiniz",
-      )));
     }
   }
 }

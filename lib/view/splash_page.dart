@@ -1,9 +1,13 @@
+// ignore_for_file: unused_element, unused_local_variable
+
+import 'dart:async';
 import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:login_page_controller/core/constants/constants.dart';
 import 'package:login_page_controller/view/home_page.dart';
 import 'package:login_page_controller/view/login_page.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class SplashPage extends StatefulWidget {
   const SplashPage({super.key});
@@ -12,28 +16,38 @@ class SplashPage extends StatefulWidget {
   State<SplashPage> createState() => _SplashPageState();
 }
 
+final Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
+late SharedPreferences prefs;
+
+String? finalToken;
+
 class _SplashPageState extends State<SplashPage> {
   @override
   void initState() {
+    getValue().whenComplete(() async {
+      Future.delayed(const Duration(microseconds: 1), () {
+        finalToken == null
+            ? Get.to(() => const LoginPage())
+            : Get.to(() => const HomePage());
+      });
+    });
     super.initState();
-    /*  
-        "email": "eve.holt@reqres.in",
+    /* 
+       "email": "eve.holt@reqres.in"
         "password": "cityslicka"
       */
+  }
 
-    savedTokens == null
-        ? Future.delayed(const Duration(microseconds: 1), () {
-            Get.to(
-              () => const LoginPage(),
-            );
-            log(savedTokens ?? "boşşşşş");
-          })
-        : Future.delayed(const Duration(microseconds: 1), () {
-            Get.to(
-              () => const HomePage(),
-            );
-            log(savedTokens ?? "Doluuu    : $savedTokens ");
-          });
+  Future getValue() async {
+    log("final Tokenın ilk hali  : $finalToken");
+    prefs = await _prefs;
+
+    var gelenToken = prefs.getString('savedTokens');
+    setState(() {
+      finalToken = gelenToken;
+    });
+
+    log("final Token  son hali  : $finalToken");
   }
 
   @override
@@ -42,7 +56,7 @@ class _SplashPageState extends State<SplashPage> {
       backgroundColor: Constants.colorGrey,
       body: const Center(
           child: Text(
-        "Hoşgelginiz",
+        "Hoşgeldiniz ... ",
         style: TextStyle(fontSize: 30, color: Constants.colorWhite),
       )),
     );

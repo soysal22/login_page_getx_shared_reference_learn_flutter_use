@@ -2,7 +2,6 @@
 
 import 'dart:developer';
 import 'package:flutter/cupertino.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter/material.dart';
 import 'package:login_page_controller/core/constants/constants.dart';
 import 'package:get/get.dart';
@@ -26,22 +25,7 @@ final TodosApiPostService serviceController = Get.put(TodosApiPostService());
 
 final formKey = GlobalKey<FormState>();
 
-final Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
-late SharedPreferences prefs;
-String? savedTokens;
-
 class _LoginPageState extends State<LoginPage> {
-  getValue() async {
-    prefs = await _prefs;
-    savedTokens = prefs.getString('savedTokens');
-  }
-
-  @override
-  void initState() {
-    getValue();
-    super.initState();
-  }
-
   /*  
         "email": "eve.holt@reqres.in",
         "password": "cityslicka"
@@ -107,10 +91,6 @@ class _LoginPageState extends State<LoginPage> {
 
   CupertinoButton _loginButton(BuildContext context) {
     return CupertinoButton.filled(
-      /*  
-        "email": "eve.holt@reqres.in",
-        "password": "cityslicka"
-      */
       onPressed: () async {
         if (formKey.currentState?.validate() == true) {
           textFieldController.fecthLogin(context);
